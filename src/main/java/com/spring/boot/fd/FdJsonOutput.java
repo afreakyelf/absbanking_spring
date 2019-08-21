@@ -6,11 +6,11 @@ public class FdJsonOutput {
 
 	private List<FixedDeposit> fdList;
 
-	public List<FixedDeposit> getAll() {
+	public List<FixedDeposit> getfd() {
 		return fdList;
 	}
 
-	public void saveAll(List<FixedDeposit> fdList) {
+	public void savefd(List<FixedDeposit> fdList) {
 		this.fdList = fdList;
 	}
 
