@@ -26,7 +26,7 @@ public class TransactionController {
 		return json;
 	}
 
-	@GetMapping(path = "/add")
+	@GetMapping(path = "/makeTransaction")
 	@ResponseBody
 	String add(@RequestParam int amount, @RequestParam int from_acc, @RequestParam int to_acc) {
 
