@@ -24,16 +24,23 @@ public class LoanController {
 	
 	@RequestMapping("/getallloanbyid")
 	@ResponseBody
-	public List<Loan> getAllLoanById(@RequestParam int acc_num){
-		return loanRepo.getAllLoanById(acc_num);
+	public JsonLoan getAllLoanById(@RequestParam int acc_num){
+		
+		JsonLoan jL = new JsonLoan();
+		jL.setLoan(loanRepo.getAllLoanById(acc_num));
+		
+		return jL;
 	}
 	
 	
 	@RequestMapping("/getallloan")
 	@ResponseBody
-	public List<Loan> getAllLoan(){
+	public JsonLoan getAllLoan(){
 		
-		return (List<Loan>) loanRepo.findAll();
+		JsonLoan jL = new JsonLoan();
+		jL.setLoan((List<Loan>) loanRepo.findAll());
+		
+		return jL ;
 		
 		
 	}
