@@ -28,7 +28,8 @@ public class deptService {
 	@RequestParam String l_name,
 	@RequestParam String phone,
 	@RequestParam String dob,
-	@RequestParam String zip) throws ParseException {
+	@RequestParam String zip,
+	@RequestParam String passwd) throws ParseException {
 		
 		long regid=(int) (Math.random()*1000000);
 		MainPojo m=new MainPojo();
@@ -46,6 +47,7 @@ public class deptService {
 		d.setPhone(phone);
 		d.setZip(zip);
 		d.setRegId(regid);
+		d.setPsswd(passwd);
 		drepo.save(d);
 		
 		return "Success";
@@ -71,6 +73,34 @@ public class deptService {
 		}
 		
 		return obj;
+	}
+	
+	@GetMapping(path = "/getPasswd",produces = "application/json")
+	@ResponseBody
+	public PasswdOutput getPasswd(@RequestParam long acc_no) {
+		PasswdOutput p=new PasswdOutput();
+		try {
+			main.checkRegistered(acc_no);
+			 p.setPasswd(drepo.getPasswd(acc_no));
+			 return p;
+		}catch(Exception e) {
+			System.out.println("At get passwd in detailsrepo "+e);
+		}
+			p.setPasswd(null);
+		return p;
+	}
+	
+	@GetMapping(path = "/updatePasswd",produces = "application/json")
+	@ResponseBody
+	public String updatePasswd(long acc_no,String passwd) {
+		try {
+			main.checkRegistered(acc_no);
+			drepo.setPasswd(acc_no, passwd);
+			return "success";
+		}catch(Exception e) {
+			System.out.println("At updating passwd in detailsrepo "+e);
+		}
+		return null;
 	}
 	
 	

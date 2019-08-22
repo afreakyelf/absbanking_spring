@@ -15,3 +15,19 @@ public class JsonOutputDetails {
 	}
 	
 }
+
+class PasswdOutput {
+
+	private String passwd;
+
+	public String getPasswd() {
+		return passwd;
+	}
+
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+
+	
+	
+}
