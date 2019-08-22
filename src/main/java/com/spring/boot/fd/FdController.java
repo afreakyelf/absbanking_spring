@@ -18,8 +18,8 @@ public class FdController {
 	
 	@RequestMapping("/insertfd")
 	@ResponseBody
-	public void insert(@RequestParam long accNum, @RequestParam int amount,@RequestParam String dod,@RequestParam int duration) {
-		FixedDeposit fd = new FixedDeposit(accNum, 	amount, dod, duration);
+	public void insert(@RequestParam long acc_no, @RequestParam int amount,@RequestParam String dod,@RequestParam int duration) {
+		FixedDeposit fd = new FixedDeposit(acc_no, 	amount, dod, duration);
 		
 		fdRepo.save(fd);
 		
@@ -27,14 +27,24 @@ public class FdController {
 	
 	@RequestMapping("/getallfdbyid")
 	@ResponseBody
-	public List<FixedDeposit> getAllById(@RequestParam int acc_num){
-		return fdRepo.getAllFdById(acc_num);
+	public FdJsonOutput getAllById(@RequestParam long acc_no){
+		
+		FdJsonOutput jO = new FdJsonOutput();
+		jO.savefd((List<FixedDeposit>)fdRepo.getAllFdById(acc_no));
+		
+		return jO;
 	}
+	
+	
 	
 	@RequestMapping("/getAllFd")
 	@ResponseBody
-	public List<FixedDeposit> getAllFd(){
-		return (List<FixedDeposit>)fdRepo.findAll();
+	public FdJsonOutput getAllFd(){
+		
+		FdJsonOutput jO = new FdJsonOutput();
+		jO.savefd((List<FixedDeposit>)fdRepo.findAll());
+		
+		return jO;
 	}
 	
 	

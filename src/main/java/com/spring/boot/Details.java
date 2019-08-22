@@ -19,6 +19,7 @@ public class Details {
 	String phone;
 	String zip;
 	String date;
+	String psswd;
 	long regId;
 	
 	
@@ -27,8 +28,10 @@ public class Details {
 	}
 
 
+	
+
 	public Details(long acc_no, String bank_id, String aadhar, String f_name, String l_name, String full_name,
-			String phone, String zip, String date, long regId) {
+			String phone, String zip, String date, String psswd, long regId) {
 		super();
 		this.acc_no = acc_no;
 		this.bank_id = bank_id;
@@ -39,8 +42,11 @@ public class Details {
 		this.phone = phone;
 		this.zip = zip;
 		this.date = date;
+		this.psswd = psswd;
 		this.regId = regId;
 	}
+
+
 
 
 	public long getAcc_no() {
@@ -143,12 +149,31 @@ public class Details {
 	}
 
 
+
+
+	public String getPsswd() {
+		return psswd;
+	}
+
+
+
+
+	public void setPsswd(String psswd) {
+		this.psswd = psswd;
+	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "Details [acc_no=" + acc_no + ", bank_id=" + bank_id + ", aadhar=" + aadhar + ", f_name=" + f_name
 				+ ", l_name=" + l_name + ", full_name=" + full_name + ", phone=" + phone + ", zip=" + zip + ", date="
-				+ date + ", regId=" + regId + "]";
+				+ date + ", psswd=" + psswd + ", regId=" + regId + "]";
 	}
+
+
+	
 
 	
 	

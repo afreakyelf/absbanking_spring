@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface TransactionRepository extends CrudRepository<Transaction, Integer>{
     
-    @Query(value = "SELECT * FROM transaction2 WHERE from_acc = ?1 or to_acc= ?1 ", nativeQuery = true)
+    @Query(value = "SELECT * FROM transaction2 WHERE from_acc = ?1 or to_acc= ?1 order by id desc limit 10", nativeQuery = true)
      List<Transaction> findbyacc(int number);
     
     @Modifying
