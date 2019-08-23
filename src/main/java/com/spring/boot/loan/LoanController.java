@@ -24,12 +24,8 @@ public class LoanController {
 	
 	@RequestMapping("/getallloanbyid")
 	@ResponseBody
-	public JsonLoan getAllLoanById(@RequestParam int acc_num){
-		
-		JsonLoan jL = new JsonLoan();
-		jL.setLoan(loanRepo.getAllLoanById(acc_num));
-		
-		return jL;
+	public Loan getAllLoanById(@RequestParam int acc_num){
+		return loanRepo.getAllLoanById(acc_num);
 	}
 	
 	
@@ -39,6 +35,10 @@ public class LoanController {
 		
 		JsonLoan jL = new JsonLoan();
 		jL.setLoan((List<Loan>) loanRepo.findAll());
+		
+		if(jL.getLoan().isEmpty()) {
+			jL=  null;
+		}
 		
 		return jL ;
 		

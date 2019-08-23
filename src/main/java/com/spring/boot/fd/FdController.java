@@ -27,12 +27,10 @@ public class FdController {
 	
 	@RequestMapping("/getallfdbyid")
 	@ResponseBody
-	public FdJsonOutput getAllById(@RequestParam long acc_no){
+	public FixedDeposit getAllById(@RequestParam long acc_no){
 		
-		FdJsonOutput jO = new FdJsonOutput();
-		jO.savefd((List<FixedDeposit>)fdRepo.getAllFdById(acc_no));
-		
-		return jO;
+		return fdRepo.getAllFdById(acc_no);
+	
 	}
 	
 	
@@ -43,6 +41,10 @@ public class FdController {
 		
 		FdJsonOutput jO = new FdJsonOutput();
 		jO.savefd((List<FixedDeposit>)fdRepo.findAll());
+		
+		if(jO.getfd()().isEmpty()) {
+			jO=  null;
+		}
 		
 		return jO;
 	}
