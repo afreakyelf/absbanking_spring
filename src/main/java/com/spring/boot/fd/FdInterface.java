@@ -10,7 +10,7 @@ import com.spring.boot.loan.Loan;
 public interface FdInterface extends CrudRepository<FixedDeposit, Integer>{
 	
 	@Query(value="select * from fixeddeposit where acc_no=?1",nativeQuery = true)
-	List<FixedDeposit> getAllFdById(long acc_no);
+	FixedDeposit getAllFdById(long acc_no);
 	
 
 }
