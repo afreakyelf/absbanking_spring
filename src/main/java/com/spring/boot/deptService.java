@@ -1,7 +1,6 @@
 package com.spring.boot;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +49,7 @@ public class deptService {
 		d.setPhone(phone);
 		d.setZip(zip);
 		d.setRegId(regid);
-		d.setPsswd(passwd);
+		d.setpasswd(passwd);
 		drepo.save(d);
 		
 		return "Success";
@@ -136,4 +135,11 @@ public class deptService {
 		return m;
 	}
 	
+	@GetMapping(path="/setImage",produces = "application/json")
+	@ResponseBody
+	public Details getDetailById(@RequestParam long acc_no,@RequestParam String image_url) {
+		Details d = drepo.getDetailsById(acc_no); 
+		d.setImage_url(image_url);
+		return d; 
+	}
 }
