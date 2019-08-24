@@ -24,12 +24,14 @@ public class deptService {
 	@ResponseBody
 	public String create(
 	@RequestParam String aadhar,
+	@RequestParam String pan_no,
 	@RequestParam String f_name,
 	@RequestParam String l_name,
 	@RequestParam String phone,
 	@RequestParam String dob,
 	@RequestParam String zip,
-	@RequestParam String passwd) throws ParseException {
+	@RequestParam String passwd
+	) throws ParseException {
 		
 		long regid=(int) (Math.random()*1000000);
 		MainPojo m=new MainPojo();
@@ -39,6 +41,7 @@ public class deptService {
 		String bank_id=f_name.substring(0, 3)+String.valueOf((int)(Math.random()*1000))+"@abs";
 		Details d=new Details();
 		d.setAadhar(aadhar);
+		d.setPan_no(pan_no);
 		d.setBank_id(bank_id);
 		d.setDate(dob);
 		d.setF_name(f_name);
