@@ -19,7 +19,7 @@ public class Details {
 	String phone;
 	String zip;
 	String date;
-	String psswd;
+	String passwd;
 	long regId;
 	
 	
@@ -31,7 +31,7 @@ public class Details {
 	
 
 	public Details(long acc_no, String bank_id, String aadhar, String f_name, String l_name, String full_name,
-			String phone, String zip, String date, String psswd, long regId) {
+			String phone, String zip, String date, String passwd, long regId) {
 		super();
 		this.acc_no = acc_no;
 		this.bank_id = bank_id;
@@ -42,7 +42,7 @@ public class Details {
 		this.phone = phone;
 		this.zip = zip;
 		this.date = date;
-		this.psswd = psswd;
+		this.passwd = passwd;
 		this.regId = regId;
 	}
 
@@ -151,15 +151,15 @@ public class Details {
 
 
 
-	public String getPsswd() {
-		return psswd;
+	public String getPasswd() {
+		return passwd;
 	}
 
 
 
 
-	public void setPsswd(String psswd) {
-		this.psswd = psswd;
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
 	}
 
 
@@ -169,7 +169,7 @@ public class Details {
 	public String toString() {
 		return "Details [acc_no=" + acc_no + ", bank_id=" + bank_id + ", aadhar=" + aadhar + ", f_name=" + f_name
 				+ ", l_name=" + l_name + ", full_name=" + full_name + ", phone=" + phone + ", zip=" + zip + ", date="
-				+ date + ", psswd=" + psswd + ", regId=" + regId + "]";
+				+ date + ", passwd=" + passwd + ", regId=" + regId + "]";
 	}
 
 
