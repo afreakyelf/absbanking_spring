@@ -8,19 +8,27 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface Idetails extends CrudRepository<Details, Integer>{
 
-	@Query(value = "select * from details where acc_no= ?1",nativeQuery = true)
+	@Query(value = "select * from details where acc_no= ?1 or phone = ?1",nativeQuery = true)
 	Details getDetailsById(long acc_no);
 	
-	@Query(value = "select phone from details where acc_no= ?1",nativeQuery = true)
+	@Query(value = "select phone from details where acc_no= ?1 or phone = ?1",nativeQuery = true)
 	String getPhNo(long acc_no);
 	
-	@Query(value="select psswd from details where acc_no=?1",nativeQuery = true)
+	@Query(value = "select acc_no from details where acc_no= ?1 or phone = ?1",nativeQuery = true)
+	Long getAccNo(long acc_no);
+	
+	@Query(value="select passwd from details where acc_no=?1 or phone = ?1",nativeQuery = true)
 	String getPasswd(long acc_no);
 	
 	@Modifying
 	@Transactional
-	@Query(value = "update details set psswd=?2 where acc_no=?1",nativeQuery = true )
+	@Query(value = "update details set passwd=?2 where acc_no=?1 or phone = ?1",nativeQuery = true )
 	void setPasswd(long acc_no,String passwd);
 	
+	@Modifying
+	@Transactional
+	@Query(value = "update details set image_url=?2 where acc_no=?1 or phone = ?1",nativeQuery = true)
+	void updateImageUrl(long acc_no,String image_url);
+
 	
 }
