@@ -80,7 +80,7 @@ public class deptService {
 	public PasswdOutput getPasswd(@RequestParam long acc_no) {
 		PasswdOutput p=new PasswdOutput();
 		try {
-			main.checkRegistered(acc_no);
+			 main.checkRegistered(acc_no);
 			 p.setPasswd(drepo.getPasswd(acc_no));
 			 return p;
 		}catch(Exception e) {
