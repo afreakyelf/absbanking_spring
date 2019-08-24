@@ -42,7 +42,7 @@ public class FdController {
 		FdJsonOutput jO = new FdJsonOutput();
 		jO.savefd((List<FixedDeposit>)fdRepo.findAll());
 		
-		if(jO.getfd()().isEmpty()) {
+		if(jO.getfd().isEmpty()) {
 			jO=  null;
 		}
 		

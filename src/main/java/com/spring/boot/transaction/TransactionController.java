@@ -1,7 +1,9 @@
 package com.spring.boot.transaction;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,21 +30,30 @@ public class TransactionController {
 
 	@GetMapping(path = "/makeTransaction")
 	@ResponseBody
-	String add(@RequestParam int amount, @RequestParam int from_acc, @RequestParam int to_acc) {
+	Optional<Transaction> add(@RequestParam int amount, @RequestParam int from_acc, @RequestParam int to_acc) {
 
 		Transaction transaction = new Transaction();
 		transaction.setAmount(amount);
 		transaction.setFromAcc(from_acc);
 		transaction.setToAcc(to_acc);
+		
 		Date date = new Date();
-		transaction.setDate(date.toString());
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss");
+		
+		String strDate = sdf.format(date);  
+		
+		transaction.setDate(strDate);
 
 		transactionRepo.save(transaction);
 
 		addAmount(to_acc, Long.parseLong(String.valueOf(amount)));
 		delAmount(from_acc, Long.parseLong(String.valueOf(amount)));
 
-		return "success";
+		JsonOutput json = new JsonOutput();
+
+		return transactionRepo.findById(transaction.getId());
+		
 	}
 
 	private void addAmount(int to_acc, long amount) {
