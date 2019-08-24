@@ -5,10 +5,10 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface Imain extends CrudRepository<MainPojo, Integer>{
 	
-	@Query(value = "select balance from maintable where regd_id=(select reg_id from details where acc_no=?1 or phone = ?2)",nativeQuery = true)
-	Long getBalanceById(long accno,long phone);
+	@Query(value = "select balance from maintable where regd_id=(select reg_id from details where acc_no=?1 or phone = ?1)",nativeQuery = true)
+	Long getBalanceById(long accno);
 	
-	@Query(value = "select is_registered from maintable m,details d where m.regd_id=d.reg_id and (d.acc_no=?1 or d.phone=?2)",nativeQuery = true)
-	boolean checkRegistered(long acc_no,long phone);
+	@Query(value = "select is_registered from maintable m,details d where m.regd_id=d.reg_id and (d.acc_no=?1 or d.phone=?1)",nativeQuery = true)
+	boolean checkRegistered(long acc_no);
 
 }
