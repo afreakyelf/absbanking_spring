@@ -1,6 +1,7 @@
 package com.spring.boot;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,12 @@ public class deptService {
 	@ResponseBody
 	public String create(
 	@RequestParam String aadhar,
-	@RequestParam String pan_no,
 	@RequestParam String f_name,
 	@RequestParam String l_name,
 	@RequestParam String phone,
 	@RequestParam String dob,
 	@RequestParam String zip,
-	@RequestParam String passwd
-	) throws ParseException {
+	@RequestParam String passwd) throws ParseException {
 		
 		long regid=(int) (Math.random()*1000000);
 		MainPojo m=new MainPojo();
@@ -40,7 +39,6 @@ public class deptService {
 		String bank_id=f_name.substring(0, 3)+String.valueOf((int)(Math.random()*1000))+"@abs";
 		Details d=new Details();
 		d.setAadhar(aadhar);
-		d.setPan_no(pan_no);
 		d.setBank_id(bank_id);
 		d.setDate(dob);
 		d.setF_name(f_name);
@@ -49,7 +47,7 @@ public class deptService {
 		d.setPhone(phone);
 		d.setZip(zip);
 		d.setRegId(regid);
-		d.setpasswd(passwd);
+		d.setPsswd(passwd);
 		drepo.save(d);
 		
 		return "Success";
@@ -58,7 +56,7 @@ public class deptService {
 	@GetMapping(path="/personal",produces = "application/json")
 	@ResponseBody
 	public Details getDetailById(@RequestParam long acc_no) {
-		return drepo.getDetailsById(acc_no);
+		return drepo.getDetailsById(acc_no,acc_no);
 	}
 	
 	@GetMapping(path="/checkRegister",produces = "application/json")
@@ -68,8 +66,8 @@ public class deptService {
 		IsUserExist obj =new IsUserExist();
 		
 		try {
-			obj.setIsExist(main.checkRegistered(acc_no));
-			obj.setPhone(drepo.getPhNo(acc_no));
+			obj.setIsExist(main.checkRegistered(acc_no,acc_no));
+			obj.setPhone(drepo.getPhNo(acc_no,acc_no));
 		}catch(Exception e) {
 			
 		}
@@ -82,8 +80,10 @@ public class deptService {
 	public PasswdOutput getPasswd(@RequestParam long acc_no) {
 		PasswdOutput p=new PasswdOutput();
 		try {
-			 main.checkRegistered(acc_no);
-			 p.setPasswd(drepo.getPasswd(acc_no));
+			main.checkRegistered(acc_no,acc_no);
+			 p.setPasswd(drepo.getPasswd(acc_no,acc_no));
+			 p.setPhone(Long.parseLong(drepo.getPhNo(acc_no,acc_no)));
+			 p.setAcc_no(drepo.getAccNo(acc_no, acc_no));
 			 return p;
 		}catch(Exception e) {
 			System.out.println("At get passwd in detailsrepo "+e);
@@ -96,8 +96,8 @@ public class deptService {
 	@ResponseBody
 	public String updatePasswd(long acc_no,String passwd) {
 		try {
-			main.checkRegistered(acc_no);
-			drepo.setPasswd(acc_no, passwd);
+			main.checkRegistered(acc_no,acc_no);
+			drepo.setPasswd(acc_no, passwd,acc_no);
 			return "success";
 		}catch(Exception e) {
 			System.out.println("At updating passwd in detailsrepo "+e);
@@ -130,16 +130,9 @@ public class deptService {
 	public BalanceOutput getBalance(@RequestParam long acc_no)
 	{
 		BalanceOutput m=new BalanceOutput();
-		long balance = main.getBalanceById(acc_no);
+		long balance = main.getBalanceById(acc_no,acc_no);
 		m.setBalance(balance);
 		return m;
 	}
 	
-	@GetMapping(path="/setImage",produces = "application/json")
-	@ResponseBody
-	public Details getDetailById(@RequestParam long acc_no,@RequestParam String image_url) {
-		Details d = drepo.getDetailsById(acc_no); 
-		d.setImage_url(image_url);
-		return d; 
-	}
 }

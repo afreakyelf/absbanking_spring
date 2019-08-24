@@ -19,29 +19,19 @@ public class Details {
 	String phone;
 	String zip;
 	String date;
-	String passwd;
+	String psswd;
 	long regId;
-	String pan_no;
-	String image_url;
-	String pan_url;
-	String aadhar_url;
 	
 	
 	public Details() {
 		super();
 	}
 
-	@Override
-	public String toString() {
-		return "Details [acc_no=" + acc_no + ", bank_id=" + bank_id + ", aadhar=" + aadhar + ", f_name=" + f_name
-				+ ", l_name=" + l_name + ", full_name=" + full_name + ", phone=" + phone + ", zip=" + zip + ", date="
-				+ date + ", passwd=" + passwd + ", regId=" + regId + ", pan_no=" + pan_no + ", image_url=" + image_url
-				+ ", pan_url=" + pan_url + ", aadhar_url=" + aadhar_url + "]";
-	}
+
+	
 
 	public Details(long acc_no, String bank_id, String aadhar, String f_name, String l_name, String full_name,
-			String phone, String zip, String date, String passwd, long regId, String pan_no, String image_url,
-			String pan_url, String aadhar_url) {
+			String phone, String zip, String date, String psswd, long regId) {
 		super();
 		this.acc_no = acc_no;
 		this.bank_id = bank_id;
@@ -52,29 +42,12 @@ public class Details {
 		this.phone = phone;
 		this.zip = zip;
 		this.date = date;
-		this.passwd = passwd;
+		this.psswd = psswd;
 		this.regId = regId;
-		this.pan_no = pan_no;
-		this.image_url = image_url;
-		this.pan_url = pan_url;
-		this.aadhar_url = aadhar_url;
 	}
 
-	public String getPan_url() {
-		return pan_url;
-	}
 
-	public void setPan_url(String pan_url) {
-		this.pan_url = pan_url;
-	}
 
-	public String getAadhar_url() {
-		return aadhar_url;
-	}
-	
-	public void setAadhar_url(String aadhar_url) {
-		this.aadhar_url = aadhar_url;
-	}
 
 	public long getAcc_no() {
 		return acc_no;
@@ -178,44 +151,33 @@ public class Details {
 
 
 
-	public String getpasswd() {
-		return passwd;
+	public String getPsswd() {
+		return psswd;
 	}
 
 
 
 
-	public void setpasswd(String passwd) {
-		this.passwd = passwd;
+	public void setPsswd(String psswd) {
+		this.psswd = psswd;
 	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "Details [acc_no=" + acc_no + ", bank_id=" + bank_id + ", aadhar=" + aadhar + ", f_name=" + f_name
+				+ ", l_name=" + l_name + ", full_name=" + full_name + ", phone=" + phone + ", zip=" + zip + ", date="
+				+ date + ", psswd=" + psswd + ", regId=" + regId + "]";
+	}
+
+
+	
 
 	
 	
-
-
-	public String getPan_no() {
-		return pan_no;
-	}
-
-
-
-	public void setPan_no(String pan_no) {
-		this.pan_no = pan_no;
-	}
-
-
-
-
-	public String getImage_url() {
-		return image_url;
-	}
-
-
-
-
-	public void setImage_url(String image_url) {
-		this.image_url = image_url;
-	}
+	
 	
 	
 }
