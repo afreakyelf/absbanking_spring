@@ -140,10 +140,24 @@ public class deptService {
 	@ResponseBody
 	public String getDetailById(@RequestParam long acc_no,@RequestParam String image_url) {
 		drepo.updateImageUrl(acc_no, image_url);
-		Details d = drepo.getDetailsById(acc_no); 
-		d.setImage_url(image_url);
-		
 		return "Success"; 
 	}
+
+	@GetMapping(path="/setaadharImage",produces = "application/json")
+	@ResponseBody
+	public String setAadharImage(@RequestParam long acc_no,@RequestParam String aadhar_url) {
+		drepo.updateAadharUrl(acc_no, aadhar_url);
+		return "Success"; 
+	}
+	
+	@GetMapping(path="/setpanImage",produces = "application/json")
+	@ResponseBody
+	public String setPanImage(@RequestParam long acc_no,@RequestParam String pan_url) {
+		drepo.updatePanUrl(acc_no, pan_url);
+		return "Success"; 
+	}
+	
+	
+	
 	
 }

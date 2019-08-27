@@ -30,5 +30,14 @@ public interface Idetails extends CrudRepository<Details, Integer>{
 	@Query(value = "update details set image_url=?2 where acc_no=?1 or phone = ?1",nativeQuery = true)
 	void updateImageUrl(long acc_no,String image_url);
 
+	@Modifying
+	@Transactional
+	@Query(value = "update details set aadhar_url=?2 where acc_no=?1 or phone = ?1",nativeQuery = true)
+	void updateAadharUrl(long acc_no,String aadhar_url);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "update details set pan_url=?2 where acc_no=?1 or phone = ?1",nativeQuery = true)
+	void updatePanUrl(long acc_no,String pan_url);
 	
 }
