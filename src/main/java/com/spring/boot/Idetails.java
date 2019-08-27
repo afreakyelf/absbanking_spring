@@ -20,6 +20,18 @@ public interface Idetails extends CrudRepository<Details, Integer>{
 	@Query(value="select passwd from details where acc_no=?1 or phone = ?1",nativeQuery = true)
 	String getPasswd(long acc_no);
 	
+	@Query(value="select aadhar from details where acc_no=?1 or phone = ?1",nativeQuery = true)
+	String getAadhar(long acc_no);
+	
+	@Query(value="select aadhar_url from details where acc_no=?1 or phone = ?1",nativeQuery = true)
+	String getAadharUrl(long acc_no);
+	
+	@Query(value="select pan_no from details where acc_no=?1 or phone = ?1")
+	String getPanno(long acc_no);
+	
+	@Query(value="select pan_url from details where acc_no=?1 or phone = ?1")
+	String getPannoUrl(long acc_no);
+	
 	@Modifying
 	@Transactional
 	@Query(value = "update details set passwd=?2 where acc_no=?1 or phone = ?1",nativeQuery = true )

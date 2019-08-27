@@ -150,11 +150,31 @@ public class deptService {
 		return "Success"; 
 	}
 	
+	@GetMapping(path="/getaadharImage",produces = "application/json")
+	@ResponseBody
+	public AadharOutput getAadharImage(@RequestParam long acc_no) {
+		
+		AadharOutput a=new AadharOutput();
+		a.setAadhar(drepo.getAadhar(acc_no));
+		a.setAadhar_url(drepo.getAadharUrl(acc_no));
+		return a;
+	}
+	
 	@GetMapping(path="/setpanImage",produces = "application/json")
 	@ResponseBody
 	public String setPanImage(@RequestParam long acc_no,@RequestParam String pan_url) {
 		drepo.updatePanUrl(acc_no, pan_url);
 		return "Success"; 
+	}
+	
+	@GetMapping(path="/getpanImage",produces = "application/json")
+	@ResponseBody
+	public PanOutput getPanImage(@RequestParam long acc_no) {
+		
+		PanOutput p=new PanOutput();
+		p.setPan_no(drepo.getPanno(acc_no));
+		p.setPan_url(drepo.getPannoUrl(acc_no));
+		return p; 
 	}
 	
 	
