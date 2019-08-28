@@ -33,7 +33,9 @@ public class deptService {
 		
 		long regid=(int) (Math.random()*1000000);
 		MainPojo m=new MainPojo();
-		m.setRegd_id(regid);m.setRegistered(true);m.setHavingloan(false);
+		m.setRegd_id(regid);
+		m.setRegistered(true);
+		m.setHavingloan(false);
 		main.save(m);
 		
 		String bank_id=f_name.substring(0, 3)+String.valueOf((int)(Math.random()*1000))+"@abs";
@@ -177,6 +179,14 @@ public class deptService {
 		return p; 
 	}
 	
+	@GetMapping(path="/tookLoan",produces = "application/json")
+	@ResponseBody
+	public String setHavingLoan(@RequestParam long acc_no) {
+	
+		main.updateHavingLoan(acc_no, true);
+		
+		return "success";
+	}
 	
 	
 	

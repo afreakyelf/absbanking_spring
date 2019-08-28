@@ -17,9 +17,10 @@ public class LoanController {
 	
 	@RequestMapping("/insertloan")
 	@ResponseBody
-	public void insertLoan(@RequestParam int accNum,@RequestParam int amount,@RequestParam String dol,@RequestParam int duration) {
+	public String insertLoan(@RequestParam int accNum,@RequestParam int amount,@RequestParam String dol,@RequestParam int duration) {
 		Loan loan = new Loan(accNum, amount, dol, duration);
 		loanRepo.save(loan);
+		return "success";
 	}
 	
 	@RequestMapping("/getallloanbyid")

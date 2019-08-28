@@ -18,10 +18,10 @@ public class FdController {
 	
 	@RequestMapping("/insertfd")
 	@ResponseBody
-	public void insert(@RequestParam long acc_no, @RequestParam int amount,@RequestParam String dod,@RequestParam int duration) {
+	public String insert(@RequestParam long acc_no, @RequestParam int amount,@RequestParam String dod,@RequestParam int duration) {
 		FixedDeposit fd = new FixedDeposit(acc_no, 	amount, dod, duration);
 		fdRepo.save(fd);
-		
+		return "success";
 	}
 	
 	@RequestMapping("/getallfdbyid")
